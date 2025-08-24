@@ -1,7 +1,10 @@
 import { type FC, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 export const HomePage: FC = (): ReactNode => {
+  const { t } = useTranslation()
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       <div className="container mx-auto px-4 py-16">
@@ -25,10 +28,10 @@ export const HomePage: FC = (): ReactNode => {
 
           {/* Title */}
           <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            QR Scanner
+            {t('app.title')}
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-400 mb-8">
-            Scan QR codes instantly with your camera
+            {t('app.subtitle')}
           </p>
 
           {/* Main CTA Buttons */}
@@ -37,14 +40,14 @@ export const HomePage: FC = (): ReactNode => {
               to="/scanner"
               className="inline-block w-full px-8 py-4 text-white text-lg font-semibold rounded-2xl transition-all duration-200 hover:scale-105 active:scale-95 shadow-xl hover:shadow-2xl bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
             >
-              Start Scanning
+              {t('buttons.startScanning')}
             </Link>
 
             <Link
               to="/generator"
               className="inline-block w-full px-8 py-4 text-white text-lg font-semibold rounded-2xl transition-all duration-200 hover:scale-105 active:scale-95 shadow-xl hover:shadow-2xl bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700"
             >
-              Generate QR Code
+              {t('buttons.generateQrCode')}
             </Link>
           </div>
 
@@ -68,11 +71,11 @@ export const HomePage: FC = (): ReactNode => {
                   </svg>
                 </div>
                 <h3 className="font-semibold text-gray-900 dark:text-white">
-                  Instant Detection
+                  {t('features.instantDetection.title')}
                 </h3>
               </div>
               <p className="text-sm text-gray-600 dark:text-gray-400">
-                Quickly scan and decode any QR code with your camera
+                {t('features.instantDetection.description')}
               </p>
             </div>
 
@@ -94,11 +97,11 @@ export const HomePage: FC = (): ReactNode => {
                   </svg>
                 </div>
                 <h3 className="font-semibold text-gray-900 dark:text-white">
-                  Secure & Private
+                  {t('features.securePrivate.title')}
                 </h3>
               </div>
               <p className="text-sm text-gray-600 dark:text-gray-400">
-                All scanning happens locally on your device
+                {t('features.securePrivate.description')}
               </p>
             </div>
 
@@ -120,11 +123,11 @@ export const HomePage: FC = (): ReactNode => {
                   </svg>
                 </div>
                 <h3 className="font-semibold text-gray-900 dark:text-white">
-                  Copy & Share
+                  {t('features.copyShare.title')}
                 </h3>
               </div>
               <p className="text-sm text-gray-600 dark:text-gray-400">
-                Easily copy content or open URLs from QR codes
+                {t('features.copyShare.description')}
               </p>
             </div>
           </div>
