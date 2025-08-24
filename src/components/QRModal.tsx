@@ -1,4 +1,5 @@
 import { type FC, type ReactNode } from 'react'
+import { useTranslation } from 'react-i18next'
 
 interface QRModalProps {
   isOpen: boolean
@@ -7,6 +8,8 @@ interface QRModalProps {
 }
 
 export const QRModal: FC<QRModalProps> = ({ isOpen, onClose, qrContent }): ReactNode => {
+  const { t } = useTranslation()
+
   if (!isOpen) return null
 
   const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>): void => {
@@ -18,7 +21,7 @@ export const QRModal: FC<QRModalProps> = ({ isOpen, onClose, qrContent }): React
   const copyToClipboard = async (): Promise<void> => {
     try {
       await navigator.clipboard.writeText(qrContent)
-      alert('Content copied to clipboard!')
+      alert(t('modal.copySuccess'))
     } catch (error) {
       console.error('Failed to copy to clipboard:', error)
     }
@@ -48,7 +51,7 @@ export const QRModal: FC<QRModalProps> = ({ isOpen, onClose, qrContent }): React
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
-            QR Code Content
+            {t('modal.title')}
           </h2>
           <button
             onClick={onClose}
@@ -74,7 +77,7 @@ export const QRModal: FC<QRModalProps> = ({ isOpen, onClose, qrContent }): React
         <div className="p-6">
           <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 mb-6">
             <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">
-              Scanned Content:
+              {t('modal.scannedContent')}
             </p>
             <div className="bg-white dark:bg-gray-800 rounded border p-3 max-h-48 overflow-y-auto">
               <pre className="text-sm text-gray-900 dark:text-white whitespace-pre-wrap break-words">
@@ -102,7 +105,7 @@ export const QRModal: FC<QRModalProps> = ({ isOpen, onClose, qrContent }): React
                   d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
                 />
               </svg>
-              Copy
+              {t('buttons.copy')}
             </button>
 
             {isUrl(qrContent) && (
@@ -123,7 +126,7 @@ export const QRModal: FC<QRModalProps> = ({ isOpen, onClose, qrContent }): React
                     d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
                   />
                 </svg>
-                Open URL
+                {t('buttons.openUrl')}
               </button>
             )}
           </div>
