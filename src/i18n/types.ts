@@ -36,12 +36,55 @@ export interface TranslationKeys {
   generator: {
     title: string
     subtitle: string
+    qrTypes: {
+      text: string
+      website: string
+      email: string
+      contact: string
+      wifi: string
+    }
     form: {
       label: string
       placeholder: string
       characterCount: string
       validationError: string
       generationError: string
+      selectType: string
+    }
+    fields: {
+      // Text fields
+      text: string
+      // Website fields
+      url: string
+      // Email fields
+      email: string
+      subject: string
+      message: string
+      // Contact fields
+      name: string
+      organization: string
+      phone: string
+      contactEmail: string
+      // WiFi fields
+      networkName: string
+      password: string
+      security: string
+      securityWPA: string
+      securityWEP: string
+      securityOpen: string
+    }
+    placeholders: {
+      text: string
+      url: string
+      email: string
+      subject: string
+      message: string
+      name: string
+      organization: string
+      phone: string
+      contactEmail: string
+      networkName: string
+      password: string
     }
     result: {
       title: string
