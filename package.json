@@ -9,9 +9,16 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "ios:start": "cap sync ios && cap run ios",
+    "ios": "npm run build && npm run ios:start",
+    "android:start": "cap sync android && cap run android",
+    "android": "npm run build && npm run android:start"
   },
   "dependencies": {
+    "@capacitor/android": "^7.4.3",
+    "@capacitor/core": "^7.4.3",
+    "@capacitor/ios": "^7.4.3",
     "@tailwindcss/vite": "^4.1.12",
     "i18next": "^25.4.2",
     "i18next-browser-languagedetector": "^8.2.0",
@@ -24,6 +31,7 @@
     "tailwindcss": "^4.1.12"
   },
   "devDependencies": {
+    "@capacitor/cli": "^7.4.3",
     "@eslint/js": "^9.25.0",
     "@types/prettier": "^2.7.3",
     "@types/qrcode": "^1.5.5",
