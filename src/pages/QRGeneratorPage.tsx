@@ -323,13 +323,25 @@ export const QRGeneratorPage: FC = (): ReactNode => {
 
   return (
     <>
-      <div className="min-h-screen bg-gradient-to-tr from-purple-100 via-pink-50 to-indigo-100 dark:from-gray-800 dark:via-purple-900/20 dark:to-indigo-900/30">
+      <div
+        className="min-h-screen bg-gradient-to-tr from-purple-100 via-pink-50 to-indigo-100 dark:from-gray-800 dark:via-purple-900/20 dark:to-indigo-900/30"
+        style={{
+          paddingTop: 'env(safe-area-inset-top)',
+          paddingBottom: 'env(safe-area-inset-bottom)',
+        }}
+      >
         {/* Modern Header with Side Layout */}
         <div className="relative overflow-hidden">
           {/* Background Pattern */}
           <div className="absolute inset-0 bg-purple-50/30 dark:bg-purple-900/10"></div>
 
-          <div className="relative px-4 pt-6 pb-8">
+          <div
+            className="relative px-4 pt-6 pb-8"
+            style={{
+              paddingLeft: 'max(1rem, env(safe-area-inset-left))',
+              paddingRight: 'max(1rem, env(safe-area-inset-right))',
+            }}
+          >
             <div className="flex items-start justify-between">
               {/* Left Side - Title & Description */}
               <div className="flex-1">
@@ -391,7 +403,13 @@ export const QRGeneratorPage: FC = (): ReactNode => {
         </div>
 
         {/* Main Content */}
-        <div className="px-4 pb-8">
+        <div
+          className="px-4 pb-8"
+          style={{
+            paddingLeft: 'max(1rem, env(safe-area-inset-left))',
+            paddingRight: 'max(1rem, env(safe-area-inset-right))',
+          }}
+        >
           <div className="max-w-md mx-auto">
             {/* QR Type Selector */}
             <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg rounded-3xl shadow-2xl shadow-purple-500/10 border border-purple-100/50 dark:border-purple-500/20 p-6 mb-6">
