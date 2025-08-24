@@ -38,15 +38,54 @@ export const es: Translation = {
   },
   generator: {
     title: 'Generador QR',
-    subtitle: 'Ingresa texto o URL para generar código QR',
+    subtitle:
+      'Selecciona el tipo e ingresa la información para generar código QR',
+    qrTypes: {
+      text: 'Texto Simple',
+      website: 'URL de Sitio Web',
+      email: 'Correo Electrónico',
+      contact: 'Tarjeta de Contacto',
+      wifi: 'Red WiFi',
+    },
     form: {
-      label: 'Texto o URL a codificar:',
-      placeholder: 'Ingresa texto, URL, número de teléfono, email...',
+      label: 'Información a codificar:',
+      placeholder: 'Ingresa la información...',
       characterCount: 'caracteres',
       validationError:
-        'Por favor ingresa algún texto para generar el código QR',
+        'Por favor ingresa la información requerida para generar el código QR',
       generationError:
         'Error al generar el código QR. Por favor intenta de nuevo.',
+      selectType: 'Selecciona el Tipo de Código QR:',
+    },
+    fields: {
+      text: 'Contenido de Texto',
+      url: 'URL del Sitio Web',
+      email: 'Dirección de Correo',
+      subject: 'Asunto del Correo',
+      message: 'Mensaje del Correo',
+      name: 'Nombre Completo',
+      organization: 'Organización',
+      phone: 'Número de Teléfono',
+      contactEmail: 'Dirección de Correo',
+      networkName: 'Nombre de Red (SSID)',
+      password: 'Contraseña',
+      security: 'Tipo de Seguridad',
+      securityWPA: 'WPA/WPA2',
+      securityWEP: 'WEP',
+      securityOpen: 'Abierta (Sin Contraseña)',
+    },
+    placeholders: {
+      text: 'Ingresa tu contenido de texto...',
+      url: 'https://ejemplo.com',
+      email: 'usuario@ejemplo.com',
+      subject: 'Asunto del correo (opcional)',
+      message: 'Mensaje del correo (opcional)',
+      name: 'Juan Pérez',
+      organization: 'Nombre de la empresa (opcional)',
+      phone: '+1234567890',
+      contactEmail: 'contacto@ejemplo.com',
+      networkName: 'MiRedWiFi',
+      password: 'ContraseñaRed',
     },
     result: {
       title: 'Código QR Generado',
@@ -54,9 +93,10 @@ export const es: Translation = {
     },
     instructions: {
       title: 'Cómo Usar',
-      step1: 'Ingresa el texto, URL o datos que quieras codificar',
-      step2: 'Haz clic en "Generar Código QR" para crear el código',
-      step3: 'Descarga la imagen o copia el texto según necesites',
+      step1: 'Selecciona el tipo de código QR que quieres crear',
+      step2: 'Completa la información requerida para el tipo seleccionado',
+      step3:
+        'Haz clic en "Generar Código QR" y descarga o comparte tu código QR',
     },
   },
   modal: {
