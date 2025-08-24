@@ -7,12 +7,12 @@ import jsQR from 'jsqr'
 export const QRScannerPage: FC = (): ReactNode => {
   const navigate = useNavigate()
   const { t } = useTranslation()
-  
+
   const [error, setError] = useState<string | null>(null)
   const [isScanning, setIsScanning] = useState<boolean>(false)
   const [qrContent, setQrContent] = useState<string>('')
   const [showModal, setShowModal] = useState<boolean>(false)
-  
+
   const videoRef = useRef<HTMLVideoElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const processing = useRef<boolean>(false)
@@ -65,7 +65,12 @@ export const QRScannerPage: FC = (): ReactNode => {
 
     ctx.drawImage(video, 0, 0, canvas.width, canvas.height)
 
-    const imageData: ImageData = ctx.getImageData(0, 0, canvas.width, canvas.height)
+    const imageData: ImageData = ctx.getImageData(
+      0,
+      0,
+      canvas.width,
+      canvas.height
+    )
 
     const code = jsQR(imageData.data, imageData.width, imageData.height, {
       inversionAttempts: 'dontInvert',
@@ -91,10 +96,10 @@ export const QRScannerPage: FC = (): ReactNode => {
       }
 
       const stream: MediaStream = await navigator.mediaDevices.getUserMedia({
-        video: { 
+        video: {
           facingMode: 'environment', // Use back camera on mobile
           width: { ideal: 1280 },
-          height: { ideal: 720 }
+          height: { ideal: 720 },
         },
       })
 
@@ -151,11 +156,9 @@ export const QRScannerPage: FC = (): ReactNode => {
                 />
               </svg>
             </button>
-
             <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
               {t('scanner.title')}
             </h1>
-
             <div className="w-11"></div> {/* Spacer for centering */}
           </div>
 
@@ -199,7 +202,7 @@ export const QRScannerPage: FC = (): ReactNode => {
                         style={{ display: 'block' }}
                       />
                       <canvas ref={canvasRef} className="hidden" />
-                      
+
                       {/* Scanning overlay */}
                       <div className="absolute inset-0 flex items-center justify-center">
                         <div className="border-2 border-white rounded-lg w-48 h-48 relative">
@@ -323,7 +326,7 @@ export const QRScannerPage: FC = (): ReactNode => {
       </div>
 
       {/* QR Result Modal */}
-      <QRModal 
+      <QRModal
         isOpen={showModal}
         onClose={handleCloseModal}
         qrContent={qrContent}

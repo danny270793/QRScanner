@@ -1,4 +1,11 @@
-import { useState, useRef, type FC, type ReactNode, type ChangeEvent, type FormEvent } from 'react'
+import {
+  useState,
+  useRef,
+  type FC,
+  type ReactNode,
+  type ChangeEvent,
+  type FormEvent,
+} from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import QRCode from 'qrcode'
@@ -6,12 +13,12 @@ import QRCode from 'qrcode'
 export const QRGeneratorPage: FC = (): ReactNode => {
   const navigate = useNavigate()
   const { t } = useTranslation()
-  
+
   const [inputText, setInputText] = useState<string>('')
   const [qrCodeDataURL, setQrCodeDataURL] = useState<string>('')
   const [isGenerating, setIsGenerating] = useState<boolean>(false)
   const [error, setError] = useState<string | null>(null)
-  
+
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const downloadLinkRef = useRef<HTMLAnchorElement>(null)
 
@@ -24,9 +31,11 @@ export const QRGeneratorPage: FC = (): ReactNode => {
     setError(null)
   }
 
-  const generateQRCode = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
+  const generateQRCode = async (
+    e: FormEvent<HTMLFormElement>
+  ): Promise<void> => {
     e.preventDefault()
-    
+
     if (!inputText.trim()) {
       setError(t('generator.form.validationError'))
       return
@@ -42,10 +51,10 @@ export const QRGeneratorPage: FC = (): ReactNode => {
         margin: 2,
         color: {
           dark: '#000000',
-          light: '#FFFFFF'
-        }
+          light: '#FFFFFF',
+        },
       })
-      
+
       setQrCodeDataURL(dataURL)
 
       // Also draw on canvas for download functionality
@@ -55,8 +64,8 @@ export const QRGeneratorPage: FC = (): ReactNode => {
           margin: 2,
           color: {
             dark: '#000000',
-            light: '#FFFFFF'
-          }
+            light: '#FFFFFF',
+          },
         })
       }
     } catch (err) {
@@ -71,7 +80,7 @@ export const QRGeneratorPage: FC = (): ReactNode => {
     if (canvasRef.current && downloadLinkRef.current) {
       const canvas: HTMLCanvasElement = canvasRef.current
       const dataURL: string = canvas.toDataURL('image/png')
-      
+
       downloadLinkRef.current.href = dataURL
       downloadLinkRef.current.download = 'qrcode.png'
       downloadLinkRef.current.click()
@@ -117,11 +126,9 @@ export const QRGeneratorPage: FC = (): ReactNode => {
                 />
               </svg>
             </button>
-
             <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
               {t('generator.title')}
             </h1>
-
             <div className="w-11"></div> {/* Spacer for centering */}
           </div>
 
@@ -153,7 +160,7 @@ export const QRGeneratorPage: FC = (): ReactNode => {
             {/* Input Form */}
             <form onSubmit={generateQRCode} className="mb-6">
               <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 mb-4">
-                <label 
+                <label
                   htmlFor="qr-input"
                   className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
                 >
@@ -214,7 +221,9 @@ export const QRGeneratorPage: FC = (): ReactNode => {
                       d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                     />
                   </svg>
-                  <span className="text-red-700 dark:text-red-300 text-sm">{error}</span>
+                  <span className="text-red-700 dark:text-red-300 text-sm">
+                    {error}
+                  </span>
                 </div>
               </div>
             )}
@@ -225,12 +234,12 @@ export const QRGeneratorPage: FC = (): ReactNode => {
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 text-center">
                   {t('generator.result.title')}
                 </h3>
-                
+
                 {/* QR Code Display */}
                 <div className="flex justify-center mb-4">
                   <div className="bg-white p-4 rounded-xl shadow-inner">
-                    <img 
-                      src={qrCodeDataURL} 
+                    <img
+                      src={qrCodeDataURL}
                       alt="Generated QR Code"
                       className="w-64 h-64"
                     />

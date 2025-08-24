@@ -7,7 +7,11 @@ interface QRModalProps {
   qrContent: string
 }
 
-export const QRModal: FC<QRModalProps> = ({ isOpen, onClose, qrContent }): ReactNode => {
+export const QRModal: FC<QRModalProps> = ({
+  isOpen,
+  onClose,
+  qrContent,
+}): ReactNode => {
   const { t } = useTranslation()
 
   if (!isOpen) return null
@@ -43,7 +47,7 @@ export const QRModal: FC<QRModalProps> = ({ isOpen, onClose, qrContent }): React
   }
 
   return (
-    <div 
+    <div
       className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4"
       onClick={handleBackdropClick}
     >
