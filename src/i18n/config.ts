@@ -1,24 +1,30 @@
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
-import enTranslations from './locales/en.json'
-import esTranslations from './locales/es.json'
+import LanguageDetector from 'i18next-browser-languagedetector'
+import { en } from './locales/en'
+import { es } from './locales/es'
 
 const resources = {
   en: {
-    translation: enTranslations,
+    translation: en,
   },
   es: {
-    translation: esTranslations,
+    translation: es,
   },
 }
 
 i18n
+  .use(LanguageDetector)
   .use(initReactI18next)
   .init({
     resources,
-    lng: navigator.language.startsWith('es') ? 'es' : 'en', // Auto-detect Spanish or default to English
     fallbackLng: 'en',
-    supportedLngs: ['en', 'es'], // Supported languages
+    supportedLngs: ['en', 'es'],
+    detection: {
+      order: ['localStorage', 'navigator', 'htmlTag'],
+      lookupLocalStorage: 'i18nextLng',
+      caches: ['localStorage'],
+    },
     interpolation: {
       escapeValue: false, // React already escapes values
     },
