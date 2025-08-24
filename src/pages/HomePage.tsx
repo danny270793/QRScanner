@@ -6,13 +6,25 @@ export const HomePage: FC = (): ReactNode => {
   const { t } = useTranslation()
 
   return (
-    <div className="min-h-screen bg-gradient-to-tr from-purple-100 via-pink-50 to-indigo-100 dark:from-gray-800 dark:via-purple-900/20 dark:to-indigo-900/30">
+    <div
+      className="min-h-screen bg-gradient-to-tr from-purple-100 via-pink-50 to-indigo-100 dark:from-gray-800 dark:via-purple-900/20 dark:to-indigo-900/30"
+      style={{
+        paddingTop: 'env(safe-area-inset-top)',
+        paddingBottom: 'env(safe-area-inset-bottom)',
+      }}
+    >
       {/* Modern Hero Section */}
       <div className="relative overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 bg-purple-50/30 dark:bg-purple-900/10"></div>
 
-        <div className="relative container mx-auto px-4 py-16">
+        <div
+          className="relative container mx-auto px-4 py-16"
+          style={{
+            paddingLeft: 'max(1rem, env(safe-area-inset-left))',
+            paddingRight: 'max(1rem, env(safe-area-inset-right))',
+          }}
+        >
           <div className="max-w-md mx-auto text-center">
             {/* Modern App Icon with Effects */}
             <div className="relative mx-auto mb-8">
@@ -98,7 +110,13 @@ export const HomePage: FC = (): ReactNode => {
       </div>
 
       {/* Enhanced Features Section */}
-      <div className="container mx-auto px-4 pb-16">
+      <div
+        className="container mx-auto px-4 pb-16"
+        style={{
+          paddingLeft: 'max(1rem, env(safe-area-inset-left))',
+          paddingRight: 'max(1rem, env(safe-area-inset-right))',
+        }}
+      >
         <div className="max-w-md mx-auto">
           <div className="grid gap-6 text-left">
             {/* Feature 1 - Instant Detection */}
