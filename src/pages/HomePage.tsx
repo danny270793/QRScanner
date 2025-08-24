@@ -31,13 +31,22 @@ export const HomePage: FC = (): ReactNode => {
             Scan QR codes instantly with your camera
           </p>
 
-          {/* Main CTA Button */}
-          <Link
-            to="/scanner"
-            className="inline-block w-full px-8 py-4 text-white text-lg font-semibold rounded-2xl transition-all duration-200 hover:scale-105 active:scale-95 shadow-xl hover:shadow-2xl bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 mb-8"
-          >
-            Start Scanning
-          </Link>
+          {/* Main CTA Buttons */}
+          <div className="space-y-4 mb-8">
+            <Link
+              to="/scanner"
+              className="inline-block w-full px-8 py-4 text-white text-lg font-semibold rounded-2xl transition-all duration-200 hover:scale-105 active:scale-95 shadow-xl hover:shadow-2xl bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+            >
+              Start Scanning
+            </Link>
+
+            <Link
+              to="/generator"
+              className="inline-block w-full px-8 py-4 text-white text-lg font-semibold rounded-2xl transition-all duration-200 hover:scale-105 active:scale-95 shadow-xl hover:shadow-2xl bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700"
+            >
+              Generate QR Code
+            </Link>
+          </div>
 
           {/* Features */}
           <div className="grid gap-4 text-left">
