@@ -137,14 +137,14 @@ export const QRGeneratorPage: FC = (): ReactNode => {
   }
 
   const renderTextForm = (): ReactNode => (
-    <div className="mb-4">
-      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+    <div className="mb-6">
+      <label className="block text-sm font-semibold text-purple-900 dark:text-purple-100 mb-3">
         {t('generator.fields.text')}
       </label>
       <textarea
         value={formData.text || ''}
         onChange={handleInputChange('text')}
-        className="w-full h-24 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg resize-none focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:text-white"
+        className="w-full h-24 px-4 py-3 bg-purple-50/30 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-500/30 rounded-2xl resize-none focus:ring-2 focus:ring-purple-400 focus:border-purple-400 dark:focus:ring-purple-500 dark:focus:border-purple-500 dark:text-white transition-all duration-200 placeholder-purple-400 dark:placeholder-purple-500"
         placeholder={t('generator.placeholders.text')}
         maxLength={1000}
       />
@@ -152,15 +152,15 @@ export const QRGeneratorPage: FC = (): ReactNode => {
   )
 
   const renderWebsiteForm = (): ReactNode => (
-    <div className="mb-4">
-      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+    <div className="mb-6">
+      <label className="block text-sm font-semibold text-purple-900 dark:text-purple-100 mb-3">
         {t('generator.fields.url')}
       </label>
       <input
         type="url"
         value={formData.url || ''}
         onChange={handleInputChange('url')}
-        className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:text-white"
+        className="w-full px-4 py-3 bg-purple-50/30 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-500/30 rounded-2xl focus:ring-2 focus:ring-purple-400 focus:border-purple-400 dark:focus:ring-purple-500 dark:focus:border-purple-500 dark:text-white transition-all duration-200 placeholder-purple-400 dark:placeholder-purple-500"
         placeholder={t('generator.placeholders.url')}
       />
     </div>
@@ -168,38 +168,38 @@ export const QRGeneratorPage: FC = (): ReactNode => {
 
   const renderEmailForm = (): ReactNode => (
     <>
-      <div className="mb-4">
-        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+      <div className="mb-6">
+        <label className="block text-sm font-semibold text-purple-900 dark:text-purple-100 mb-3">
           {t('generator.fields.email')}
         </label>
         <input
           type="email"
           value={formData.email || ''}
           onChange={handleInputChange('email')}
-          className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:text-white"
+          className="w-full px-4 py-3 bg-purple-50/30 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-500/30 rounded-2xl focus:ring-2 focus:ring-purple-400 focus:border-purple-400 dark:focus:ring-purple-500 dark:focus:border-purple-500 dark:text-white transition-all duration-200 placeholder-purple-400 dark:placeholder-purple-500"
           placeholder={t('generator.placeholders.email')}
         />
       </div>
-      <div className="mb-4">
-        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+      <div className="mb-6">
+        <label className="block text-sm font-semibold text-purple-900 dark:text-purple-100 mb-3">
           {t('generator.fields.subject')}
         </label>
         <input
           type="text"
           value={formData.subject || ''}
           onChange={handleInputChange('subject')}
-          className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:text-white"
+          className="w-full px-4 py-3 bg-purple-50/30 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-500/30 rounded-2xl focus:ring-2 focus:ring-purple-400 focus:border-purple-400 dark:focus:ring-purple-500 dark:focus:border-purple-500 dark:text-white transition-all duration-200 placeholder-purple-400 dark:placeholder-purple-500"
           placeholder={t('generator.placeholders.subject')}
         />
       </div>
-      <div className="mb-4">
-        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+      <div className="mb-6">
+        <label className="block text-sm font-semibold text-purple-900 dark:text-purple-100 mb-3">
           {t('generator.fields.message')}
         </label>
         <textarea
           value={formData.message || ''}
           onChange={handleInputChange('message')}
-          className="w-full h-20 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg resize-none focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:text-white"
+          className="w-full h-20 px-4 py-3 bg-purple-50/30 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-500/30 rounded-2xl resize-none focus:ring-2 focus:ring-purple-400 focus:border-purple-400 dark:focus:ring-purple-500 dark:focus:border-purple-500 dark:text-white transition-all duration-200 placeholder-purple-400 dark:placeholder-purple-500"
           placeholder={t('generator.placeholders.message')}
         />
       </div>
@@ -208,51 +208,51 @@ export const QRGeneratorPage: FC = (): ReactNode => {
 
   const renderContactForm = (): ReactNode => (
     <>
-      <div className="mb-4">
-        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+      <div className="mb-6">
+        <label className="block text-sm font-semibold text-purple-900 dark:text-purple-100 mb-3">
           {t('generator.fields.name')}
         </label>
         <input
           type="text"
           value={formData.name || ''}
           onChange={handleInputChange('name')}
-          className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:text-white"
+          className="w-full px-4 py-3 bg-purple-50/30 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-500/30 rounded-2xl focus:ring-2 focus:ring-purple-400 focus:border-purple-400 dark:focus:ring-purple-500 dark:focus:border-purple-500 dark:text-white transition-all duration-200 placeholder-purple-400 dark:placeholder-purple-500"
           placeholder={t('generator.placeholders.name')}
         />
       </div>
-      <div className="mb-4">
-        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+      <div className="mb-6">
+        <label className="block text-sm font-semibold text-purple-900 dark:text-purple-100 mb-3">
           {t('generator.fields.organization')}
         </label>
         <input
           type="text"
           value={formData.organization || ''}
           onChange={handleInputChange('organization')}
-          className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:text-white"
+          className="w-full px-4 py-3 bg-purple-50/30 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-500/30 rounded-2xl focus:ring-2 focus:ring-purple-400 focus:border-purple-400 dark:focus:ring-purple-500 dark:focus:border-purple-500 dark:text-white transition-all duration-200 placeholder-purple-400 dark:placeholder-purple-500"
           placeholder={t('generator.placeholders.organization')}
         />
       </div>
-      <div className="mb-4">
-        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+      <div className="mb-6">
+        <label className="block text-sm font-semibold text-purple-900 dark:text-purple-100 mb-3">
           {t('generator.fields.phone')}
         </label>
         <input
           type="tel"
           value={formData.phone || ''}
           onChange={handleInputChange('phone')}
-          className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:text-white"
+          className="w-full px-4 py-3 bg-purple-50/30 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-500/30 rounded-2xl focus:ring-2 focus:ring-purple-400 focus:border-purple-400 dark:focus:ring-purple-500 dark:focus:border-purple-500 dark:text-white transition-all duration-200 placeholder-purple-400 dark:placeholder-purple-500"
           placeholder={t('generator.placeholders.phone')}
         />
       </div>
-      <div className="mb-4">
-        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+      <div className="mb-6">
+        <label className="block text-sm font-semibold text-purple-900 dark:text-purple-100 mb-3">
           {t('generator.fields.contactEmail')}
         </label>
         <input
           type="email"
           value={formData.email || ''}
           onChange={handleInputChange('email')}
-          className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:text-white"
+          className="w-full px-4 py-3 bg-purple-50/30 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-500/30 rounded-2xl focus:ring-2 focus:ring-purple-400 focus:border-purple-400 dark:focus:ring-purple-500 dark:focus:border-purple-500 dark:text-white transition-all duration-200 placeholder-purple-400 dark:placeholder-purple-500"
           placeholder={t('generator.placeholders.contactEmail')}
         />
       </div>
@@ -261,26 +261,26 @@ export const QRGeneratorPage: FC = (): ReactNode => {
 
   const renderWiFiForm = (): ReactNode => (
     <>
-      <div className="mb-4">
-        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+      <div className="mb-6">
+        <label className="block text-sm font-semibold text-purple-900 dark:text-purple-100 mb-3">
           {t('generator.fields.networkName')}
         </label>
         <input
           type="text"
           value={formData.networkName || ''}
           onChange={handleInputChange('networkName')}
-          className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:text-white"
+          className="w-full px-4 py-3 bg-purple-50/30 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-500/30 rounded-2xl focus:ring-2 focus:ring-purple-400 focus:border-purple-400 dark:focus:ring-purple-500 dark:focus:border-purple-500 dark:text-white transition-all duration-200 placeholder-purple-400 dark:placeholder-purple-500"
           placeholder={t('generator.placeholders.networkName')}
         />
       </div>
-      <div className="mb-4">
-        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+      <div className="mb-6">
+        <label className="block text-sm font-semibold text-purple-900 dark:text-purple-100 mb-3">
           {t('generator.fields.security')}
         </label>
         <select
           value={formData.security || 'WPA'}
           onChange={handleInputChange('security')}
-          className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:text-white"
+          className="w-full px-4 py-3 bg-purple-50/30 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-500/30 rounded-2xl focus:ring-2 focus:ring-purple-400 focus:border-purple-400 dark:focus:ring-purple-500 dark:focus:border-purple-500 dark:text-white transition-all duration-200"
         >
           <option value="WPA">{t('generator.fields.securityWPA')}</option>
           <option value="WEP">{t('generator.fields.securityWEP')}</option>
@@ -288,15 +288,15 @@ export const QRGeneratorPage: FC = (): ReactNode => {
         </select>
       </div>
       {formData.security !== 'nopass' && (
-        <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+        <div className="mb-6">
+          <label className="block text-sm font-semibold text-purple-900 dark:text-purple-100 mb-3">
             {t('generator.fields.password')}
           </label>
           <input
             type="text"
             value={formData.password || ''}
             onChange={handleInputChange('password')}
-            className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:text-white"
+            className="w-full px-4 py-3 bg-purple-50/30 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-500/30 rounded-2xl focus:ring-2 focus:ring-purple-400 focus:border-purple-400 dark:focus:ring-purple-500 dark:focus:border-purple-500 dark:text-white transition-all duration-200 placeholder-purple-400 dark:placeholder-purple-500"
             placeholder={t('generator.placeholders.password')}
           />
         </div>
@@ -323,53 +323,70 @@ export const QRGeneratorPage: FC = (): ReactNode => {
 
   return (
     <>
-      <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-blue-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-        {/* Header */}
-        <div className="px-4 pt-8 pb-4">
-          <div className="flex items-center justify-between mb-6">
-            <button
-              onClick={handleBack}
-              className="p-3 rounded-xl bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700 transition-all duration-200 hover:scale-105 active:scale-95 shadow-sm hover:shadow-md"
-            >
-              <svg
-                className="w-5 h-5 text-gray-700 dark:text-gray-300"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M15 19l-7-7 7-7"
-                />
-              </svg>
-            </button>
-            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
-              {t('generator.title')}
-            </h1>
-            <div className="w-11"></div> {/* Spacer for centering */}
-          </div>
+      <div className="min-h-screen bg-gradient-to-tr from-purple-100 via-pink-50 to-indigo-100 dark:from-gray-800 dark:via-purple-900/20 dark:to-indigo-900/30">
+        {/* Modern Header with Side Layout */}
+        <div className="relative overflow-hidden">
+          {/* Background Pattern */}
+          <div className="absolute inset-0 bg-purple-50/30 dark:bg-purple-900/10"></div>
 
-          <div className="text-center mb-8">
-            <div className="mx-auto w-16 h-16 bg-gradient-to-br from-green-600 to-blue-600 rounded-2xl flex items-center justify-center mb-4 shadow-lg">
-              <svg
-                className="w-8 h-8 text-white"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M12 4v16m8-8H4"
-                />
-              </svg>
+          <div className="relative px-4 pt-6 pb-8">
+            <div className="flex items-start justify-between">
+              {/* Left Side - Title & Description */}
+              <div className="flex-1">
+                <button
+                  onClick={handleBack}
+                  className="inline-flex items-center px-3 py-2 mb-4 text-sm font-medium text-purple-600 dark:text-purple-400 bg-purple-100/50 dark:bg-purple-500/10 hover:bg-purple-200/70 dark:hover:bg-purple-500/20 rounded-full transition-colors duration-200 border border-purple-200/50 dark:border-purple-500/20"
+                >
+                  <svg
+                    className="w-4 h-4 mr-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                    />
+                  </svg>
+                  {t('navigation.back')}
+                </button>
+
+                <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 dark:from-purple-400 dark:to-indigo-400 bg-clip-text text-transparent mb-2">
+                  {t('generator.title')}
+                </h1>
+                <p className="text-purple-700/70 dark:text-purple-300/70 text-base max-w-sm">
+                  {t('generator.subtitle')}
+                </p>
+              </div>
+
+              {/* Right Side - Decorative Element */}
+              <div className="flex-shrink-0 ml-4">
+                <div className="relative">
+                  <div className="w-20 h-20 bg-gradient-to-br from-purple-500 via-pink-500 to-indigo-500 rounded-3xl shadow-lg shadow-purple-500/25 transform rotate-12 flex items-center justify-center">
+                    <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center backdrop-blur-sm">
+                      <svg
+                        className="w-8 h-8 text-white"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                  {/* Floating dots */}
+                  <div className="absolute -top-2 -right-2 w-4 h-4 bg-pink-400 rounded-full animate-pulse"></div>
+                  <div className="absolute -bottom-1 -left-2 w-3 h-3 bg-indigo-400 rounded-full animate-pulse delay-500"></div>
+                </div>
+              </div>
             </div>
-            <p className="text-gray-600 dark:text-gray-400 text-lg">
-              {t('generator.subtitle')}
-            </p>
           </div>
         </div>
 
@@ -377,14 +394,14 @@ export const QRGeneratorPage: FC = (): ReactNode => {
         <div className="px-4 pb-8">
           <div className="max-w-md mx-auto">
             {/* QR Type Selector */}
-            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 mb-4">
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg rounded-3xl shadow-2xl shadow-purple-500/10 border border-purple-100/50 dark:border-purple-500/20 p-6 mb-6">
+              <label className="block text-sm font-semibold text-purple-900 dark:text-purple-100 mb-3">
                 {t('generator.form.selectType')}
               </label>
               <select
                 value={selectedType}
                 onChange={handleTypeChange}
-                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:text-white"
+                className="w-full px-4 py-3 bg-purple-50/50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-500/30 rounded-2xl focus:ring-2 focus:ring-purple-400 focus:border-purple-400 dark:focus:ring-purple-500 dark:focus:border-purple-500 dark:text-white transition-all duration-200"
               >
                 <option value="text">{t('generator.qrTypes.text')}</option>
                 <option value="website">
@@ -400,11 +417,11 @@ export const QRGeneratorPage: FC = (): ReactNode => {
 
             {/* Input Form */}
             <form onSubmit={generateQRCode} className="mb-6">
-              <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 mb-4">
+              <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg rounded-3xl shadow-2xl shadow-purple-500/10 border border-purple-100/50 dark:border-purple-500/20 p-6 mb-6">
                 {renderFormByType()}
 
-                <div className="flex justify-between items-center mt-4">
-                  <span className="text-xs text-gray-500 dark:text-gray-400">
+                <div className="flex justify-between items-center mt-6 pt-4 border-t border-purple-100 dark:border-purple-500/20">
+                  <span className="text-xs text-purple-600 dark:text-purple-400 font-medium">
                     {Object.keys(formData).length > 0
                       ? 'Fields filled'
                       : 'Fill required fields'}
@@ -413,7 +430,7 @@ export const QRGeneratorPage: FC = (): ReactNode => {
                     <button
                       type="button"
                       onClick={clearForm}
-                      className="text-xs text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300"
+                      className="text-xs text-pink-600 dark:text-pink-400 hover:text-pink-700 dark:hover:text-pink-300 font-medium transition-colors duration-200"
                     >
                       {t('buttons.clear')}
                     </button>
@@ -425,10 +442,10 @@ export const QRGeneratorPage: FC = (): ReactNode => {
               <button
                 type="submit"
                 disabled={isGenerating}
-                className={`w-full px-8 py-4 text-white rounded-xl font-semibold transition-all duration-200 shadow-lg ${
+                className={`w-full px-8 py-4 rounded-3xl font-bold text-lg transition-all duration-300 shadow-xl ${
                   isGenerating
-                    ? 'bg-gray-400 cursor-not-allowed'
-                    : 'bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 hover:scale-105'
+                    ? 'bg-gray-300 dark:bg-gray-600 text-gray-500 dark:text-gray-400 cursor-not-allowed'
+                    : 'bg-gradient-to-r from-purple-500 via-pink-500 to-indigo-500 hover:from-purple-600 hover:via-pink-600 hover:to-indigo-600 text-white shadow-purple-500/25 hover:shadow-purple-500/40 hover:scale-105 active:scale-95'
                 }`}
               >
                 {isGenerating ? t('buttons.generating') : t('buttons.generate')}
@@ -461,27 +478,27 @@ export const QRGeneratorPage: FC = (): ReactNode => {
 
             {/* Generated QR Code */}
             {qrCodeDataURL && (
-              <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 mb-6">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 text-center">
+              <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg rounded-3xl shadow-2xl shadow-purple-500/10 border border-purple-100/50 dark:border-purple-500/20 p-8 mb-6">
+                <h3 className="text-xl font-bold text-purple-900 dark:text-purple-100 mb-6 text-center">
                   {t('generator.result.title')}
                 </h3>
 
                 {/* QR Code Display */}
-                <div className="flex justify-center mb-4">
-                  <div className="bg-white p-4 rounded-xl shadow-inner">
+                <div className="flex justify-center mb-6">
+                  <div className="bg-white p-6 rounded-3xl shadow-2xl shadow-purple-500/20 border border-purple-100 dark:border-purple-500/30">
                     <img
                       src={qrCodeDataURL}
                       alt="Generated QR Code"
-                      className="w-64 h-64"
+                      className="w-64 h-64 rounded-xl"
                     />
                   </div>
                 </div>
 
                 {/* Action Buttons */}
-                <div className="flex flex-col sm:flex-row gap-3">
+                <div className="flex flex-col sm:flex-row gap-4">
                   <button
                     onClick={downloadQRCode}
-                    className="flex-1 px-4 py-3 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-700 transition-colors duration-200 flex items-center justify-center gap-2"
+                    className="flex-1 px-6 py-4 bg-gradient-to-r from-indigo-500 to-purple-500 text-white rounded-2xl font-bold hover:from-indigo-600 hover:to-purple-600 transition-all duration-300 flex items-center justify-center gap-3 shadow-lg shadow-indigo-500/25 hover:shadow-indigo-500/40 hover:scale-105"
                   >
                     <svg
                       className="w-5 h-5"
@@ -501,7 +518,7 @@ export const QRGeneratorPage: FC = (): ReactNode => {
 
                   <button
                     onClick={copyToClipboard}
-                    className="flex-1 px-4 py-3 bg-green-600 text-white rounded-xl font-semibold hover:bg-green-700 transition-colors duration-200 flex items-center justify-center gap-2"
+                    className="flex-1 px-6 py-4 bg-gradient-to-r from-pink-500 to-rose-500 text-white rounded-2xl font-bold hover:from-pink-600 hover:to-rose-600 transition-all duration-300 flex items-center justify-center gap-3 shadow-lg shadow-pink-500/25 hover:shadow-pink-500/40 hover:scale-105"
                   >
                     <svg
                       className="w-5 h-5"
@@ -521,12 +538,12 @@ export const QRGeneratorPage: FC = (): ReactNode => {
                 </div>
 
                 {/* Text Preview */}
-                <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
-                  <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                <div className="mt-6 pt-6 border-t border-purple-200 dark:border-purple-500/30">
+                  <p className="text-sm text-purple-800 dark:text-purple-200 font-semibold mb-3">
                     {t('generator.result.encodedContent')}
                   </p>
-                  <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-3 max-h-20 overflow-y-auto">
-                    <pre className="text-xs text-gray-900 dark:text-white whitespace-pre-wrap break-words">
+                  <div className="bg-purple-50/50 dark:bg-purple-900/20 rounded-2xl p-4 max-h-20 overflow-y-auto border border-purple-100 dark:border-purple-500/30">
+                    <pre className="text-xs text-purple-900 dark:text-purple-100 whitespace-pre-wrap break-words">
                       {qrContent}
                     </pre>
                   </div>
@@ -535,22 +552,51 @@ export const QRGeneratorPage: FC = (): ReactNode => {
             )}
 
             {/* Instructions */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
-              <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
-                {t('generator.instructions.title')}
-              </h4>
-              <ul className="space-y-2 text-gray-600 dark:text-gray-400">
+            <div className="bg-white/60 dark:bg-gray-800/60 backdrop-blur-lg rounded-3xl shadow-xl shadow-purple-500/5 border border-purple-100/50 dark:border-purple-500/20 p-8">
+              <div className="flex items-center mb-6">
+                <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-indigo-500 rounded-2xl flex items-center justify-center mr-4">
+                  <svg
+                    className="w-5 h-5 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                </div>
+                <h4 className="text-xl font-bold text-purple-900 dark:text-purple-100">
+                  {t('generator.instructions.title')}
+                </h4>
+              </div>
+              <ul className="space-y-4 text-purple-700 dark:text-purple-200">
                 <li className="flex items-start">
-                  <span className="text-green-500 font-bold mr-2">1.</span>
-                  {t('generator.instructions.step1')}
+                  <span className="inline-flex items-center justify-center w-6 h-6 bg-purple-500 text-white text-sm font-bold rounded-full mr-3 mt-0.5">
+                    1
+                  </span>
+                  <span className="leading-relaxed">
+                    {t('generator.instructions.step1')}
+                  </span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-green-500 font-bold mr-2">2.</span>
-                  {t('generator.instructions.step2')}
+                  <span className="inline-flex items-center justify-center w-6 h-6 bg-pink-500 text-white text-sm font-bold rounded-full mr-3 mt-0.5">
+                    2
+                  </span>
+                  <span className="leading-relaxed">
+                    {t('generator.instructions.step2')}
+                  </span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-green-500 font-bold mr-2">3.</span>
-                  {t('generator.instructions.step3')}
+                  <span className="inline-flex items-center justify-center w-6 h-6 bg-indigo-500 text-white text-sm font-bold rounded-full mr-3 mt-0.5">
+                    3
+                  </span>
+                  <span className="leading-relaxed">
+                    {t('generator.instructions.step3')}
+                  </span>
                 </li>
               </ul>
             </div>
