@@ -1,9 +1,11 @@
 import { useState, useRef, type FC, type ReactNode, type ChangeEvent, type FormEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import QRCode from 'qrcode'
 
 export const QRGeneratorPage: FC = (): ReactNode => {
   const navigate = useNavigate()
+  const { t } = useTranslation()
   
   const [inputText, setInputText] = useState<string>('')
   const [qrCodeDataURL, setQrCodeDataURL] = useState<string>('')
@@ -26,7 +28,7 @@ export const QRGeneratorPage: FC = (): ReactNode => {
     e.preventDefault()
     
     if (!inputText.trim()) {
-      setError('Please enter some text to generate QR code')
+      setError(t('generator.form.validationError'))
       return
     }
 
@@ -59,7 +61,7 @@ export const QRGeneratorPage: FC = (): ReactNode => {
       }
     } catch (err) {
       console.error('Error generating QR code:', err)
-      setError('Failed to generate QR code. Please try again.')
+      setError(t('generator.form.generationError'))
     } finally {
       setIsGenerating(false)
     }
@@ -79,7 +81,7 @@ export const QRGeneratorPage: FC = (): ReactNode => {
   const copyToClipboard = async (): Promise<void> => {
     try {
       await navigator.clipboard.writeText(inputText)
-      alert('Text copied to clipboard!')
+      alert(t('modal.copySuccess'))
     } catch (error) {
       console.error('Failed to copy to clipboard:', error)
     }
@@ -117,7 +119,7 @@ export const QRGeneratorPage: FC = (): ReactNode => {
             </button>
 
             <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
-              QR Generator
+              {t('generator.title')}
             </h1>
 
             <div className="w-11"></div> {/* Spacer for centering */}
@@ -140,7 +142,7 @@ export const QRGeneratorPage: FC = (): ReactNode => {
               </svg>
             </div>
             <p className="text-gray-600 dark:text-gray-400 text-lg">
-              Enter text or URL to generate QR code
+              {t('generator.subtitle')}
             </p>
           </div>
         </div>
@@ -155,19 +157,19 @@ export const QRGeneratorPage: FC = (): ReactNode => {
                   htmlFor="qr-input"
                   className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
                 >
-                  Text or URL to encode:
+                  {t('generator.form.label')}
                 </label>
                 <textarea
                   id="qr-input"
                   value={inputText}
                   onChange={handleInputChange}
                   className="w-full h-24 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg resize-none focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:text-white"
-                  placeholder="Enter text, URL, phone number, email..."
+                  placeholder={t('generator.form.placeholder')}
                   maxLength={1000}
                 />
                 <div className="flex justify-between items-center mt-2">
                   <span className="text-xs text-gray-500 dark:text-gray-400">
-                    {inputText.length}/1000 characters
+                    {inputText.length}/1000 {t('generator.form.characterCount')}
                   </span>
                   {inputText && (
                     <button
@@ -175,7 +177,7 @@ export const QRGeneratorPage: FC = (): ReactNode => {
                       onClick={clearForm}
                       className="text-xs text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300"
                     >
-                      Clear
+                      {t('buttons.clear')}
                     </button>
                   )}
                 </div>
@@ -191,7 +193,7 @@ export const QRGeneratorPage: FC = (): ReactNode => {
                     : 'bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 hover:scale-105'
                 }`}
               >
-                {isGenerating ? 'Generating...' : 'Generate QR Code'}
+                {isGenerating ? t('buttons.generating') : t('buttons.generate')}
               </button>
             </form>
 
@@ -221,7 +223,7 @@ export const QRGeneratorPage: FC = (): ReactNode => {
             {qrCodeDataURL && (
               <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 mb-6">
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 text-center">
-                  Generated QR Code
+                  {t('generator.result.title')}
                 </h3>
                 
                 {/* QR Code Display */}
@@ -254,7 +256,7 @@ export const QRGeneratorPage: FC = (): ReactNode => {
                         d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                       />
                     </svg>
-                    Download
+                    {t('buttons.download')}
                   </button>
 
                   <button
@@ -274,14 +276,14 @@ export const QRGeneratorPage: FC = (): ReactNode => {
                         d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
                       />
                     </svg>
-                    Copy Text
+                    {t('buttons.copyText')}
                   </button>
                 </div>
 
                 {/* Text Preview */}
                 <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
                   <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
-                    Encoded content:
+                    {t('generator.result.encodedContent')}
                   </p>
                   <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-3 max-h-20 overflow-y-auto">
                     <pre className="text-xs text-gray-900 dark:text-white whitespace-pre-wrap break-words">
@@ -295,20 +297,20 @@ export const QRGeneratorPage: FC = (): ReactNode => {
             {/* Instructions */}
             <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
               <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
-                How to Use
+                {t('generator.instructions.title')}
               </h4>
               <ul className="space-y-2 text-gray-600 dark:text-gray-400">
                 <li className="flex items-start">
                   <span className="text-green-500 font-bold mr-2">1.</span>
-                  Enter the text, URL, or data you want to encode
+                  {t('generator.instructions.step1')}
                 </li>
                 <li className="flex items-start">
                   <span className="text-green-500 font-bold mr-2">2.</span>
-                  Click "Generate QR Code" to create the code
+                  {t('generator.instructions.step2')}
                 </li>
                 <li className="flex items-start">
                   <span className="text-green-500 font-bold mr-2">3.</span>
-                  Download the image or copy the text as needed
+                  {t('generator.instructions.step3')}
                 </li>
               </ul>
             </div>
