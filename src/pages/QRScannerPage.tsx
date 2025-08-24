@@ -47,7 +47,6 @@ export const QRScannerPage: FC = (): ReactNode => {
   }
 
   const processFrame = (): void => {
-    console.log('processFrame')
     if (!processing.current || !videoRef.current || !canvasRef.current) return
 
     const video: HTMLVideoElement = videoRef.current
@@ -99,7 +98,7 @@ export const QRScannerPage: FC = (): ReactNode => {
 
       streamRef.current = stream
       videoRef.current.srcObject = stream
-      await videoRef.current.play()
+      videoRef.current.play()
 
       videoRef.current.addEventListener('loadeddata', () => {
         if (!processing.current) {
