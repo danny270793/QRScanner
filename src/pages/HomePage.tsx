@@ -6,58 +6,107 @@ export const HomePage: FC = (): ReactNode => {
   const { t } = useTranslation()
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-      <div className="container mx-auto px-4 py-16">
-        <div className="max-w-md mx-auto text-center">
-          {/* App Icon */}
-          <div className="mx-auto w-20 h-20 bg-gradient-to-br from-blue-600 to-purple-600 rounded-3xl flex items-center justify-center mb-8 shadow-2xl">
-            <svg
-              className="w-10 h-10 text-white"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h4M4 4h5.01M4 20h5.01M20 4h.01M20 20h.01M12 8h.01M8 12h.01M12 16h.01M16 12h.01"
-              />
-            </svg>
-          </div>
+    <div className="min-h-screen bg-gradient-to-tr from-purple-100 via-pink-50 to-indigo-100 dark:from-gray-800 dark:via-purple-900/20 dark:to-indigo-900/30">
+      {/* Modern Hero Section */}
+      <div className="relative overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 bg-purple-50/30 dark:bg-purple-900/10"></div>
 
-          {/* Title */}
-          <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            {t('app.title')}
-          </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-400 mb-8">
-            {t('app.subtitle')}
-          </p>
-
-          {/* Main CTA Buttons */}
-          <div className="space-y-4 mb-8">
-            <Link
-              to="/scanner"
-              className="inline-block w-full px-8 py-4 text-white text-lg font-semibold rounded-2xl transition-all duration-200 hover:scale-105 active:scale-95 shadow-xl hover:shadow-2xl bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
-            >
-              {t('buttons.startScanning')}
-            </Link>
-
-            <Link
-              to="/generator"
-              className="inline-block w-full px-8 py-4 text-white text-lg font-semibold rounded-2xl transition-all duration-200 hover:scale-105 active:scale-95 shadow-xl hover:shadow-2xl bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700"
-            >
-              {t('buttons.generateQrCode')}
-            </Link>
-          </div>
-
-          {/* Features */}
-          <div className="grid gap-4 text-left">
-            <div className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-lg">
-              <div className="flex items-center mb-2">
-                <div className="w-8 h-8 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center mr-3">
+        <div className="relative container mx-auto px-4 py-16">
+          <div className="max-w-md mx-auto text-center">
+            {/* Modern App Icon with Effects */}
+            <div className="relative mx-auto mb-8">
+              <div className="w-32 h-32 bg-gradient-to-br from-purple-500 via-pink-500 to-indigo-500 rounded-[2rem] flex items-center justify-center shadow-2xl shadow-purple-500/25 transform hover:scale-105 transition-all duration-300">
+                <div className="w-28 h-28 bg-white/10 rounded-3xl flex items-center justify-center backdrop-blur-sm">
                   <svg
-                    className="w-4 h-4 text-green-600 dark:text-green-400"
+                    className="w-16 h-16 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={1.5}
+                      d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"
+                    />
+                  </svg>
+                </div>
+              </div>
+              {/* Floating elements */}
+              <div className="absolute -top-4 -right-4 w-6 h-6 bg-pink-400 rounded-full animate-bounce delay-100"></div>
+              <div className="absolute -bottom-2 -left-4 w-4 h-4 bg-indigo-400 rounded-full animate-pulse delay-300"></div>
+              <div className="absolute top-1/2 -right-6 w-3 h-3 bg-purple-400 rounded-full animate-ping delay-700"></div>
+            </div>
+
+            {/* Enhanced Title */}
+            <h1 className="text-5xl font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 dark:from-purple-400 dark:via-pink-400 dark:to-indigo-400 bg-clip-text text-transparent mb-6">
+              {t('app.title')}
+            </h1>
+            <p className="text-xl text-purple-700/80 dark:text-purple-300/80 mb-12 font-medium leading-relaxed">
+              {t('app.subtitle')}
+            </p>
+
+            {/* Modern CTA Buttons */}
+            <div className="space-y-6 mb-16">
+              <Link
+                to="/scanner"
+                className="group inline-block w-full px-10 py-5 text-white text-xl font-bold rounded-3xl transition-all duration-300 hover:scale-105 active:scale-95 shadow-2xl hover:shadow-3xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:from-indigo-600 hover:via-purple-600 hover:to-pink-600 shadow-purple-500/25 hover:shadow-purple-500/40"
+              >
+                <div className="flex items-center justify-center gap-3">
+                  <svg
+                    className="w-6 h-6 transition-transform group-hover:scale-110"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"
+                    />
+                  </svg>
+                  {t('buttons.startScanning')}
+                </div>
+              </Link>
+
+              <Link
+                to="/generator"
+                className="group inline-block w-full px-10 py-5 text-white text-xl font-bold rounded-3xl transition-all duration-300 hover:scale-105 active:scale-95 shadow-2xl hover:shadow-3xl bg-gradient-to-r from-pink-500 via-rose-500 to-purple-500 hover:from-pink-600 hover:via-rose-600 hover:to-purple-600 shadow-pink-500/25 hover:shadow-pink-500/40"
+              >
+                <div className="flex items-center justify-center gap-3">
+                  <svg
+                    className="w-6 h-6 transition-transform group-hover:scale-110"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 4v16m8-8H4"
+                    />
+                  </svg>
+                  {t('buttons.generateQrCode')}
+                </div>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Enhanced Features Section */}
+      <div className="container mx-auto px-4 pb-16">
+        <div className="max-w-md mx-auto">
+          <div className="grid gap-6 text-left">
+            {/* Feature 1 - Instant Detection */}
+            <div className="group bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg rounded-3xl p-6 shadow-xl shadow-purple-500/10 border border-purple-100/50 dark:border-purple-500/20 hover:shadow-2xl hover:shadow-purple-500/20 transition-all duration-300 hover:scale-105">
+              <div className="flex items-center mb-4">
+                <div className="w-12 h-12 bg-gradient-to-br from-green-400 to-emerald-500 rounded-2xl flex items-center justify-center mr-4 shadow-lg group-hover:scale-110 transition-transform">
+                  <svg
+                    className="w-6 h-6 text-white"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -70,20 +119,21 @@ export const HomePage: FC = (): ReactNode => {
                     />
                   </svg>
                 </div>
-                <h3 className="font-semibold text-gray-900 dark:text-white">
+                <h3 className="text-lg font-bold text-purple-900 dark:text-purple-100">
                   {t('features.instantDetection.title')}
                 </h3>
               </div>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
+              <p className="text-purple-700 dark:text-purple-200 leading-relaxed">
                 {t('features.instantDetection.description')}
               </p>
             </div>
 
-            <div className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-lg">
-              <div className="flex items-center mb-2">
-                <div className="w-8 h-8 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mr-3">
+            {/* Feature 2 - Secure & Private */}
+            <div className="group bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg rounded-3xl p-6 shadow-xl shadow-purple-500/10 border border-purple-100/50 dark:border-purple-500/20 hover:shadow-2xl hover:shadow-purple-500/20 transition-all duration-300 hover:scale-105">
+              <div className="flex items-center mb-4">
+                <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-2xl flex items-center justify-center mr-4 shadow-lg group-hover:scale-110 transition-transform">
                   <svg
-                    className="w-4 h-4 text-blue-600 dark:text-blue-400"
+                    className="w-6 h-6 text-white"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -96,20 +146,21 @@ export const HomePage: FC = (): ReactNode => {
                     />
                   </svg>
                 </div>
-                <h3 className="font-semibold text-gray-900 dark:text-white">
+                <h3 className="text-lg font-bold text-purple-900 dark:text-purple-100">
                   {t('features.securePrivate.title')}
                 </h3>
               </div>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
+              <p className="text-purple-700 dark:text-purple-200 leading-relaxed">
                 {t('features.securePrivate.description')}
               </p>
             </div>
 
-            <div className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-lg">
-              <div className="flex items-center mb-2">
-                <div className="w-8 h-8 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center mr-3">
+            {/* Feature 3 - Copy & Share */}
+            <div className="group bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg rounded-3xl p-6 shadow-xl shadow-purple-500/10 border border-purple-100/50 dark:border-purple-500/20 hover:shadow-2xl hover:shadow-purple-500/20 transition-all duration-300 hover:scale-105">
+              <div className="flex items-center mb-4">
+                <div className="w-12 h-12 bg-gradient-to-br from-purple-400 to-pink-500 rounded-2xl flex items-center justify-center mr-4 shadow-lg group-hover:scale-110 transition-transform">
                   <svg
-                    className="w-4 h-4 text-purple-600 dark:text-purple-400"
+                    className="w-6 h-6 text-white"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -122,11 +173,11 @@ export const HomePage: FC = (): ReactNode => {
                     />
                   </svg>
                 </div>
-                <h3 className="font-semibold text-gray-900 dark:text-white">
+                <h3 className="text-lg font-bold text-purple-900 dark:text-purple-100">
                   {t('features.copyShare.title')}
                 </h3>
               </div>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
+              <p className="text-purple-700 dark:text-purple-200 leading-relaxed">
                 {t('features.copyShare.description')}
               </p>
             </div>
