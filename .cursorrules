@@ -3,4 +3,5 @@ rules:
 - do not commit changes go git untill I ask you explicitily
 - when I ask you to commit changes to git, do it file by file explaining what changes was done to those files
 - when you have to create a form use formik and yup
-- in each commit yo done use the feat/chore/fix
+- in each commit you done use the feat/chore/fix
+- avoid hardcode texts, use i18n instead
