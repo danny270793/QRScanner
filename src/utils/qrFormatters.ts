@@ -85,7 +85,7 @@ export class QRDataFormatter {
   }
 
   static formatWiFi(data: WiFiData): string {
-    const security = data.security.toUpperCase()
+    const security = (data.security || 'WPA').toUpperCase()
     const networkName = data.networkName.replace(/[";,:\\]/g, '\\$&')
     const password = data.password
       ? data.password.replace(/[";,:\\]/g, '\\$&')
