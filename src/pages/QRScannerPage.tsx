@@ -47,6 +47,7 @@ export const QRScannerPage: FC = (): ReactNode => {
   }
 
   const processFrame = (): void => {
+    console.log('processFrame')
     if (!processing.current || !videoRef.current || !canvasRef.current) return
 
     const video: HTMLVideoElement = videoRef.current
