@@ -9,13 +9,21 @@ import {
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import QRCode from 'qrcode'
+import {
+  QRDataFormatter,
+  validateQRData,
+  type QRType,
+  type QRData,
+} from '../utils/qrFormatters'
 
 export const QRGeneratorPage: FC = (): ReactNode => {
   const navigate = useNavigate()
   const { t } = useTranslation()
 
-  const [inputText, setInputText] = useState<string>('')
+  const [selectedType, setSelectedType] = useState<QRType>('text')
+  const [formData, setFormData] = useState<Record<string, string>>({})
   const [qrCodeDataURL, setQrCodeDataURL] = useState<string>('')
+  const [qrContent, setQrContent] = useState<string>('')
   const [isGenerating, setIsGenerating] = useState<boolean>(false)
   const [error, setError] = useState<string | null>(null)
 
@@ -26,18 +34,36 @@ export const QRGeneratorPage: FC = (): ReactNode => {
     navigate('/')
   }
 
-  const handleInputChange = (e: ChangeEvent<HTMLTextAreaElement>): void => {
-    setInputText(e.target.value)
+  const handleTypeChange = (e: ChangeEvent<HTMLSelectElement>): void => {
+    const newType = e.target.value as QRType
+    setSelectedType(newType)
+    setFormData({})
+    setQrCodeDataURL('')
+    setQrContent('')
     setError(null)
   }
+
+  const handleInputChange =
+    (field: string) =>
+    (
+      e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    ): void => {
+      setFormData(prev => ({
+        ...prev,
+        [field]: e.target.value,
+      }))
+      setError(null)
+    }
 
   const generateQRCode = async (
     e: FormEvent<HTMLFormElement>
   ): Promise<void> => {
     e.preventDefault()
 
-    if (!inputText.trim()) {
-      setError(t('generator.form.validationError'))
+    // Validate form data
+    const validationError = validateQRData(selectedType, formData)
+    if (validationError) {
+      setError(validationError)
       return
     }
 
@@ -45,8 +71,15 @@ export const QRGeneratorPage: FC = (): ReactNode => {
     setError(null)
 
     try {
+      // Format data according to QR type
+      const qrData = QRDataFormatter.formatData(
+        selectedType,
+        formData as unknown as QRData
+      )
+      setQrContent(qrData)
+
       // Generate QR code as data URL
-      const dataURL: string = await QRCode.toDataURL(inputText, {
+      const dataURL: string = await QRCode.toDataURL(qrData, {
         width: 300,
         margin: 2,
         color: {
@@ -59,7 +92,7 @@ export const QRGeneratorPage: FC = (): ReactNode => {
 
       // Also draw on canvas for download functionality
       if (canvasRef.current) {
-        await QRCode.toCanvas(canvasRef.current, inputText, {
+        await QRCode.toCanvas(canvasRef.current, qrData, {
           width: 300,
           margin: 2,
           color: {
@@ -89,7 +122,7 @@ export const QRGeneratorPage: FC = (): ReactNode => {
 
   const copyToClipboard = async (): Promise<void> => {
     try {
-      await navigator.clipboard.writeText(inputText)
+      await navigator.clipboard.writeText(qrContent)
       alert(t('modal.copySuccess'))
     } catch (error) {
       console.error('Failed to copy to clipboard:', error)
@@ -97,9 +130,195 @@ export const QRGeneratorPage: FC = (): ReactNode => {
   }
 
   const clearForm = (): void => {
-    setInputText('')
+    setFormData({})
     setQrCodeDataURL('')
+    setQrContent('')
     setError(null)
+  }
+
+  const renderTextForm = (): ReactNode => (
+    <div className="mb-4">
+      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+        {t('generator.fields.text')}
+      </label>
+      <textarea
+        value={formData.text || ''}
+        onChange={handleInputChange('text')}
+        className="w-full h-24 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg resize-none focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:text-white"
+        placeholder={t('generator.placeholders.text')}
+        maxLength={1000}
+      />
+    </div>
+  )
+
+  const renderWebsiteForm = (): ReactNode => (
+    <div className="mb-4">
+      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+        {t('generator.fields.url')}
+      </label>
+      <input
+        type="url"
+        value={formData.url || ''}
+        onChange={handleInputChange('url')}
+        className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:text-white"
+        placeholder={t('generator.placeholders.url')}
+      />
+    </div>
+  )
+
+  const renderEmailForm = (): ReactNode => (
+    <>
+      <div className="mb-4">
+        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          {t('generator.fields.email')}
+        </label>
+        <input
+          type="email"
+          value={formData.email || ''}
+          onChange={handleInputChange('email')}
+          className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:text-white"
+          placeholder={t('generator.placeholders.email')}
+        />
+      </div>
+      <div className="mb-4">
+        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          {t('generator.fields.subject')}
+        </label>
+        <input
+          type="text"
+          value={formData.subject || ''}
+          onChange={handleInputChange('subject')}
+          className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:text-white"
+          placeholder={t('generator.placeholders.subject')}
+        />
+      </div>
+      <div className="mb-4">
+        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          {t('generator.fields.message')}
+        </label>
+        <textarea
+          value={formData.message || ''}
+          onChange={handleInputChange('message')}
+          className="w-full h-20 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg resize-none focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:text-white"
+          placeholder={t('generator.placeholders.message')}
+        />
+      </div>
+    </>
+  )
+
+  const renderContactForm = (): ReactNode => (
+    <>
+      <div className="mb-4">
+        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          {t('generator.fields.name')}
+        </label>
+        <input
+          type="text"
+          value={formData.name || ''}
+          onChange={handleInputChange('name')}
+          className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:text-white"
+          placeholder={t('generator.placeholders.name')}
+        />
+      </div>
+      <div className="mb-4">
+        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          {t('generator.fields.organization')}
+        </label>
+        <input
+          type="text"
+          value={formData.organization || ''}
+          onChange={handleInputChange('organization')}
+          className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:text-white"
+          placeholder={t('generator.placeholders.organization')}
+        />
+      </div>
+      <div className="mb-4">
+        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          {t('generator.fields.phone')}
+        </label>
+        <input
+          type="tel"
+          value={formData.phone || ''}
+          onChange={handleInputChange('phone')}
+          className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:text-white"
+          placeholder={t('generator.placeholders.phone')}
+        />
+      </div>
+      <div className="mb-4">
+        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          {t('generator.fields.contactEmail')}
+        </label>
+        <input
+          type="email"
+          value={formData.email || ''}
+          onChange={handleInputChange('email')}
+          className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:text-white"
+          placeholder={t('generator.placeholders.contactEmail')}
+        />
+      </div>
+    </>
+  )
+
+  const renderWiFiForm = (): ReactNode => (
+    <>
+      <div className="mb-4">
+        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          {t('generator.fields.networkName')}
+        </label>
+        <input
+          type="text"
+          value={formData.networkName || ''}
+          onChange={handleInputChange('networkName')}
+          className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:text-white"
+          placeholder={t('generator.placeholders.networkName')}
+        />
+      </div>
+      <div className="mb-4">
+        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          {t('generator.fields.security')}
+        </label>
+        <select
+          value={formData.security || 'WPA'}
+          onChange={handleInputChange('security')}
+          className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:text-white"
+        >
+          <option value="WPA">{t('generator.fields.securityWPA')}</option>
+          <option value="WEP">{t('generator.fields.securityWEP')}</option>
+          <option value="nopass">{t('generator.fields.securityOpen')}</option>
+        </select>
+      </div>
+      {formData.security !== 'nopass' && (
+        <div className="mb-4">
+          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            {t('generator.fields.password')}
+          </label>
+          <input
+            type="text"
+            value={formData.password || ''}
+            onChange={handleInputChange('password')}
+            className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:text-white"
+            placeholder={t('generator.placeholders.password')}
+          />
+        </div>
+      )}
+    </>
+  )
+
+  const renderFormByType = (): ReactNode => {
+    switch (selectedType) {
+      case 'text':
+        return renderTextForm()
+      case 'website':
+        return renderWebsiteForm()
+      case 'email':
+        return renderEmailForm()
+      case 'contact':
+        return renderContactForm()
+      case 'wifi':
+        return renderWiFiForm()
+      default:
+        return renderTextForm()
+    }
   }
 
   return (
@@ -157,28 +376,40 @@ export const QRGeneratorPage: FC = (): ReactNode => {
         {/* Main Content */}
         <div className="px-4 pb-8">
           <div className="max-w-md mx-auto">
+            {/* QR Type Selector */}
+            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 mb-4">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                {t('generator.form.selectType')}
+              </label>
+              <select
+                value={selectedType}
+                onChange={handleTypeChange}
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:text-white"
+              >
+                <option value="text">{t('generator.qrTypes.text')}</option>
+                <option value="website">
+                  {t('generator.qrTypes.website')}
+                </option>
+                <option value="email">{t('generator.qrTypes.email')}</option>
+                <option value="contact">
+                  {t('generator.qrTypes.contact')}
+                </option>
+                <option value="wifi">{t('generator.qrTypes.wifi')}</option>
+              </select>
+            </div>
+
             {/* Input Form */}
             <form onSubmit={generateQRCode} className="mb-6">
               <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 mb-4">
-                <label
-                  htmlFor="qr-input"
-                  className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
-                >
-                  {t('generator.form.label')}
-                </label>
-                <textarea
-                  id="qr-input"
-                  value={inputText}
-                  onChange={handleInputChange}
-                  className="w-full h-24 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg resize-none focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:text-white"
-                  placeholder={t('generator.form.placeholder')}
-                  maxLength={1000}
-                />
-                <div className="flex justify-between items-center mt-2">
+                {renderFormByType()}
+
+                <div className="flex justify-between items-center mt-4">
                   <span className="text-xs text-gray-500 dark:text-gray-400">
-                    {inputText.length}/1000 {t('generator.form.characterCount')}
+                    {Object.keys(formData).length > 0
+                      ? 'Fields filled'
+                      : 'Fill required fields'}
                   </span>
-                  {inputText && (
+                  {Object.keys(formData).some(key => formData[key]?.trim()) && (
                     <button
                       type="button"
                       onClick={clearForm}
@@ -193,9 +424,9 @@ export const QRGeneratorPage: FC = (): ReactNode => {
               {/* Generate Button */}
               <button
                 type="submit"
-                disabled={!inputText.trim() || isGenerating}
+                disabled={isGenerating}
                 className={`w-full px-8 py-4 text-white rounded-xl font-semibold transition-all duration-200 shadow-lg ${
-                  !inputText.trim() || isGenerating
+                  isGenerating
                     ? 'bg-gray-400 cursor-not-allowed'
                     : 'bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 hover:scale-105'
                 }`}
@@ -296,7 +527,7 @@ export const QRGeneratorPage: FC = (): ReactNode => {
                   </p>
                   <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-3 max-h-20 overflow-y-auto">
                     <pre className="text-xs text-gray-900 dark:text-white whitespace-pre-wrap break-words">
-                      {inputText}
+                      {qrContent}
                     </pre>
                   </div>
                 </div>
