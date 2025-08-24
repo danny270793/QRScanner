@@ -1,0 +1,5 @@
+rules:
+- when is possible use types, do not allow "const a=4" use "const a:number=4" instead, the same for functions arguments
+- do not commit changes go git untill I ask you explicitily
+- when I ask you to commit changes to git, do it file by file explaining what changes was done to those files
+- when you have to create a form use formik and yup
