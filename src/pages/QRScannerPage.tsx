@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState, type FC, type ReactNode } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { QRModal } from '../components/QRModal'
 import jsQR from 'jsqr'
 
 export const QRScannerPage: FC = (): ReactNode => {
   const navigate = useNavigate()
+  const { t } = useTranslation()
   
   const [error, setError] = useState<string | null>(null)
   const [isScanning, setIsScanning] = useState<boolean>(false)
@@ -84,7 +86,7 @@ export const QRScannerPage: FC = (): ReactNode => {
   const startCamera = async (): Promise<void> => {
     try {
       if (!videoRef.current) {
-        setError('Video element not available')
+        setError(t('errors.videoNotAvailable'))
         return
       }
 
@@ -108,7 +110,7 @@ export const QRScannerPage: FC = (): ReactNode => {
       })
     } catch (err) {
       console.error('Error accessing camera:', err)
-      setError('Unable to access camera. Please make sure you have given camera permissions.')
+      setError(t('errors.cameraAccess'))
     }
   }
 
@@ -151,7 +153,7 @@ export const QRScannerPage: FC = (): ReactNode => {
             </button>
 
             <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
-              QR Scanner
+              {t('scanner.title')}
             </h1>
 
             <div className="w-11"></div> {/* Spacer for centering */}
@@ -174,7 +176,7 @@ export const QRScannerPage: FC = (): ReactNode => {
               </svg>
             </div>
             <p className="text-gray-600 dark:text-gray-400 text-lg">
-              Point your camera at a QR code to scan
+              {t('scanner.subtitle')}
             </p>
           </div>
         </div>
@@ -232,7 +234,7 @@ export const QRScannerPage: FC = (): ReactNode => {
                         />
                       </svg>
                       <p className="text-white text-center">
-                        Tap "Start Camera" to begin scanning
+                        {t('scanner.cameraPlaceholder')}
                       </p>
                     </div>
                   )}
@@ -247,7 +249,7 @@ export const QRScannerPage: FC = (): ReactNode => {
                   onClick={handleStartScanningClick}
                   className="px-8 py-4 text-white rounded-xl font-semibold transition-all duration-200 hover:scale-105 shadow-lg bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
                 >
-                  Start Camera
+                  {t('buttons.startCamera')}
                 </button>
               </div>
             )}
@@ -258,7 +260,7 @@ export const QRScannerPage: FC = (): ReactNode => {
                   onClick={stopCamera}
                   className="px-8 py-4 text-white rounded-xl font-semibold transition-all duration-200 hover:scale-105 shadow-lg bg-red-600 hover:bg-red-700"
                 >
-                  Stop Camera
+                  {t('buttons.stopCamera')}
                 </button>
               </div>
             )}
@@ -283,14 +285,14 @@ export const QRScannerPage: FC = (): ReactNode => {
                     </svg>
                   </div>
                   <h3 className="text-xl font-semibold text-red-900 dark:text-red-100 mb-2">
-                    Error
+                    {t('errors.error')}
                   </h3>
                   <p className="text-red-700 dark:text-red-300 mb-4">{error}</p>
                   <button
                     onClick={resetScan}
                     className="px-6 py-3 bg-red-600 text-white rounded-xl font-semibold hover:bg-red-700 transition-colors"
                   >
-                    Try Again
+                    {t('buttons.tryAgain')}
                   </button>
                 </div>
               </div>
@@ -299,20 +301,20 @@ export const QRScannerPage: FC = (): ReactNode => {
             {/* Instructions */}
             <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
               <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
-                How to Scan
+                {t('scanner.instructions.title')}
               </h4>
               <ul className="space-y-2 text-gray-600 dark:text-gray-400">
                 <li className="flex items-start">
                   <span className="text-blue-500 font-bold mr-2">1.</span>
-                  Tap "Start Camera" to activate your device's camera
+                  {t('scanner.instructions.step1')}
                 </li>
                 <li className="flex items-start">
                   <span className="text-blue-500 font-bold mr-2">2.</span>
-                  Point your camera at the QR code
+                  {t('scanner.instructions.step2')}
                 </li>
                 <li className="flex items-start">
                   <span className="text-blue-500 font-bold mr-2">3.</span>
-                  Hold steady until the QR code is detected automatically
+                  {t('scanner.instructions.step3')}
                 </li>
               </ul>
             </div>
